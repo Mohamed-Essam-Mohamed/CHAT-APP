@@ -1,18 +1,15 @@
-import 'package:chat_app/src/feature/auth/register/view/register_screen.dart';
-import 'package:chat_app/src/feature/auth/widget/forget_password_widget.dart';
 import 'package:chat_app/src/feature/auth/widget/have_account_widget.dart';
-import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
 import 'package:chat_app/src/widget/custom_material_button.dart';
 import 'package:chat_app/src/widget/custom_text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-class LoginScreen extends StatelessWidget {
-  static const String routeName = "LoginScreen";
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  static const String routeName = "register_screen";
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,47 +37,50 @@ class LoginScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "Sign In",
+                        "Sign Up",
                         style: AppTextStyle.appTextStyle30,
                       ),
                     ),
                     Gap(siz.height * 0.2),
-                    Text(
-                      "Welcome Back!",
-                      style: AppTextStyle.appTextStyle25,
-                    ),
                     Gap(25.h),
                     CustomTextForm(
                       controller: TextEditingController(),
                       myValidator: (text) {},
-                      title: "Email",
-                      hintText: "Enter your email",
+                      title: "First Name",
+                      hintText: "Enter your Name",
+                      keyboardType: TextInputType.name,
+                    ),
+                    Gap(10.h),
+                    CustomTextForm(
+                      controller: TextEditingController(),
+                      myValidator: (text) {},
+                      title: "Email address",
+                      hintText: "Enter your Email",
+                      keyboardType: TextInputType.emailAddress,
                     ),
                     Gap(10.h),
                     CustomTextForm(
                       controller: TextEditingController(),
                       myValidator: (text) {},
                       title: "Password",
-                      hintText: "Enter your password",
+                      hintText: "Enter your Password",
+                      isPassword: true,
+                      obscureText: true,
+                      keyboardType: TextInputType.visiblePassword,
                     ),
-                    Gap(2.h),
-                    ForgetPasswordWidget(
-                      onTap: () {},
-                    ),
-                    Gap(50.h),
+                    Gap(33.h),
                     CustomMaterialButton(
                       onPressed: () {},
-                      title: "Sign In",
+                      title: "Sign Up",
                     ),
                     Gap(20.h),
                     //? have an account
                     HaveAccountWidget(
-                      title: "Don't have an account?",
+                      title: "Already have an account?",
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(RegisterScreen.routeName);
+                        Navigator.of(context).pop();
                       },
-                      subTitle: "Sign Up",
+                      subTitle: "Sign In",
                     ),
                   ],
                 ),

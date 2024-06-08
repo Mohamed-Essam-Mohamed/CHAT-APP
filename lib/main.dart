@@ -1,5 +1,6 @@
 import 'package:chat_app/splash_screen.dart';
 import 'package:chat_app/src/feature/auth/login/view/login_screen.dart';
+import 'package:chat_app/src/feature/auth/register/view/register_screen.dart';
 import 'package:chat_app/src/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,6 +25,7 @@ class ChatApp extends StatelessWidget {
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           LoginScreen.routeName: (context) => const LoginScreen(),
+          RegisterScreen.routeName: (context) => const RegisterScreen()
         },
       ),
     );
