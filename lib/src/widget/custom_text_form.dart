@@ -71,6 +71,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
                   : null,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 10.sp, vertical: 9.sp),
+              enabled: true,
               enabledBorder:
                   _outLineInputBorder(color: AppColors.black, width: 1),
               focusedBorder:
