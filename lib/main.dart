@@ -30,7 +30,7 @@ class ChatApp extends StatelessWidget {
         initialRoute: LoginScreen.routeName,
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
-          LoginScreen.routeName: (context) => const LoginScreen(),
+          LoginScreen.routeName: (context) => LoginScreen(),
           RegisterScreen.routeName: (context) => const RegisterScreen()
         },
       ),
