@@ -16,7 +16,7 @@ class DialogApp {
         return AlertDialog(
           content: Row(
             children: [
-              const CircularProgressIndicator(color: AppColors.blue),
+              const CircularProgressIndicator(color: AppColors.primaryColro),
               Gap(12.w),
               Text(
                 message,
@@ -47,7 +47,7 @@ class DialogApp {
           content: Text(
             message,
             style: AppTextStyle.appTextStyle15.copyWith(
-              color: AppColors.blue,
+              color: AppColors.primaryColro,
             ),
           ),
         );

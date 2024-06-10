@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "LoginScreen";
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
         child: Stack(
           children: [
             SvgPicture.asset(
-              "assets/svgs/background.svg",
+              "assets/svgs/backgorund.svg",
               height: double.infinity,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -93,13 +93,13 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                           myValidator: (text) {
                             if (text == null || text.isEmpty) {
                               return "Enter your password";
-                            } else if (text.length < 8) {
-                              return "Password must be at least 6 characters";
                             }
                             return null;
                           },
                           title: "Password",
                           hintText: "Enter your password",
+                          isPassword: true,
+                          obscureText: true,
                         ),
                         Gap(2.h),
                         ForgetPasswordWidget(
