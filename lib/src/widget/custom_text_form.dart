@@ -74,8 +74,8 @@ class _CustomTextFormState extends State<CustomTextForm> {
               enabled: true,
               enabledBorder:
                   _outLineInputBorder(color: AppColors.black, width: 1),
-              focusedBorder:
-                  _outLineInputBorder(color: AppColors.blue, width: 1.5),
+              focusedBorder: _outLineInputBorder(
+                  color: AppColors.primaryColro, width: 1.5),
               errorBorder:
                   _outLineInputBorder(color: AppColors.red, width: 1.6),
             ),
