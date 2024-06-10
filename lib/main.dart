@@ -2,6 +2,7 @@ import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/splash_screen.dart';
 import 'package:chat_app/src/feature/auth/login/view/login_screen.dart';
 import 'package:chat_app/src/feature/auth/register/view/register_screen.dart';
+import 'package:chat_app/src/feature/home/view/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +28,12 @@ class ChatApp extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Chat App',
-        initialRoute: LoginScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),
-          RegisterScreen.routeName: (context) => const RegisterScreen()
+          RegisterScreen.routeName: (context) => const RegisterScreen(),
+          HomeScreen.routeName: (context) => const HomeScreen()
         },
       ),
     );

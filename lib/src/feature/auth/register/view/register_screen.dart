@@ -39,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen>
         child: Stack(
           children: [
             SvgPicture.asset(
-              "assets/svgs/background.svg",
+              "assets/svgs/backgorund.svg",
               height: double.infinity,
               width: double.infinity,
               fit: BoxFit.cover,
