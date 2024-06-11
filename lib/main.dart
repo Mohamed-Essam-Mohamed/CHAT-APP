@@ -3,21 +3,38 @@ import 'package:chat_app/splash_screen.dart';
 import 'package:chat_app/src/feature/auth/login/view/login_screen.dart';
 import 'package:chat_app/src/feature/auth/register/view/register_screen.dart';
 import 'package:chat_app/src/feature/home/view/home_screen.dart';
+import 'package:chat_app/src/provider/save_user_provider.dart';
+import 'package:chat_app/src/utils/app_sharedpreferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesUtils.init();
+  String route;
+  var user = SharedPreferencesUtils.getData(key: 'TokenId');
+  if (user == null) {
+    route = SplashScreen.routeName;
+  } else {
+    route = HomeScreen.routeName;
+  }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(ChatApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SaveUserProvider(),
+      child: ChatApp(route: route),
+    ),
+  );
 }
 
 class ChatApp extends StatelessWidget {
-  const ChatApp({super.key});
+  final String route;
+  const ChatApp({super.key, required this.route});
 
   @override
   Widget build(BuildContext context) {

@@ -147,4 +147,9 @@ class _RegisterScreenState extends State<RegisterScreen>
   void showLoadin() {
     DialogApp.showLoading(context, "Loading...");
   }
+
+  @override
+  void goToLogin() {
+    Navigator.of(context).pop();
+  }
 }
