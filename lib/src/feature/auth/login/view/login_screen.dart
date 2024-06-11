@@ -3,6 +3,8 @@ import 'package:chat_app/src/feature/auth/login/view_model/login_view_model.dart
 import 'package:chat_app/src/feature/auth/register/view/register_screen.dart';
 import 'package:chat_app/src/feature/auth/widget/forget_password_widget.dart';
 import 'package:chat_app/src/feature/auth/widget/have_account_widget.dart';
+import 'package:chat_app/src/feature/home/view/home_screen.dart';
+import 'package:chat_app/src/provider/save_user_provider.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
 import 'package:chat_app/src/utils/dialog_app.dart';
 import 'package:chat_app/src/widget/custom_material_button.dart';
@@ -147,5 +149,13 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
   @override
   void showLoadin() {
     DialogApp.showLoading(context, "Loading...");
+  }
+
+  @override
+  void navigatorToHome(user) {
+    var saveUserProvider =
+        Provider.of<SaveUserProvider>(context, listen: false);
+    saveUserProvider.user = user;
+    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
   }
 }

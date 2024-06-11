@@ -1,4 +1,6 @@
 import 'package:chat_app/src/feature/auth/login/view/login_screen.dart';
+import 'package:chat_app/src/feature/home/view/home_screen.dart';
+import 'package:chat_app/src/utils/app_sharedpreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
@@ -12,12 +14,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  String routeName = LoginScreen.routeName;
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 4), () {
-      Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-    });
+    var checkToken = SharedPreferencesUtils.getData(key: 'TokenId');
+    if (checkToken != null) {
+      routeName = HomeScreen.routeName;
+    }
+    Future.delayed(
+      const Duration(seconds: 4),
+      () {
+        Navigator.of(context).pushReplacementNamed(routeName);
+      },
+    );
   }
 
   @override

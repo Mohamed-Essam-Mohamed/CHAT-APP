@@ -1,3 +1,5 @@
+import 'package:chat_app/src/data/firebase_app/firebase_app.dart';
+import 'package:chat_app/src/data/model/user_app.dart';
 import 'package:chat_app/src/feature/auth/register/view_model/register_navigator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,15 @@ class RegisterViewModel extends ChangeNotifier {
           email: emailController.text,
           password: passwordController.text,
         );
+        UsersApp user = UsersApp(
+          id: credential.user!.uid,
+          name: nameController.text,
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        MyFirebaseApp.registerUserFirebase(user);
         navigator.hideLoading();
+        navigator.goToLogin();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           navigator.hideLoading();
