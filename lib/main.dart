@@ -14,27 +14,22 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferencesUtils.init();
-  String route;
-  var user = SharedPreferencesUtils.getData(key: 'TokenId');
-  if (user == null) {
-    route = SplashScreen.routeName;
-  } else {
-    route = HomeScreen.routeName;
-  }
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
     ChangeNotifierProvider(
       create: (context) => SaveUserProvider(),
-      child: ChatApp(route: route),
+      child: const ChatApp(),
     ),
   );
 }
 
 class ChatApp extends StatelessWidget {
-  final String route;
-  const ChatApp({super.key, required this.route});
+  const ChatApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +43,7 @@ class ChatApp extends StatelessWidget {
         initialRoute: SplashScreen.routeName,
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
-          LoginScreen.routeName: (context) => LoginScreen(),
+          LoginScreen.routeName: (context) => const LoginScreen(),
           RegisterScreen.routeName: (context) => const RegisterScreen(),
           HomeScreen.routeName: (context) => const HomeScreen()
         },
