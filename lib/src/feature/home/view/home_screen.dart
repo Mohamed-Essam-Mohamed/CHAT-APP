@@ -1,9 +1,11 @@
+import 'package:chat_app/src/provider/save_user_provider.dart';
 import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = "HomeScreen";
@@ -11,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provideder = Provider.of<SaveUserProvider>(context);
     return Container(
       color: AppColors.white,
       child: Stack(
@@ -52,11 +55,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-// appBar: AppBar(
-//         title: Text('Chat App' , style: AppTextStyle.appTextStyle30, ),
-//         centerTitle: true,
-//         elevation: 50,
-//         backgroundColor: Colors.transparent,
-//       ),
-

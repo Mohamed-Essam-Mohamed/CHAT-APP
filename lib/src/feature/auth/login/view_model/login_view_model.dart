@@ -2,7 +2,6 @@ import 'package:chat_app/src/data/firebase_app/firebase_app.dart';
 import 'package:chat_app/src/feature/auth/login/view_model/login_navigator.dart';
 import 'package:chat_app/src/utils/app_sharedpreferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class LoginViewModel extends ChangeNotifier {
