@@ -1,5 +1,6 @@
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/splash_screen.dart';
+import 'package:chat_app/src/feature/add_group/view/add_group_screen.dart';
 import 'package:chat_app/src/feature/auth/login/view/login_screen.dart';
 import 'package:chat_app/src/feature/auth/register/view/register_screen.dart';
 import 'package:chat_app/src/feature/home/view/home_screen.dart';
@@ -45,7 +46,8 @@ class ChatApp extends StatelessWidget {
           SplashScreen.routeName: (context) => const SplashScreen(),
           LoginScreen.routeName: (context) => const LoginScreen(),
           RegisterScreen.routeName: (context) => const RegisterScreen(),
-          HomeScreen.routeName: (context) => const HomeScreen()
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          AddGroupScreen.routeName: (context) => AddGroupScreen(),
         },
       ),
     );

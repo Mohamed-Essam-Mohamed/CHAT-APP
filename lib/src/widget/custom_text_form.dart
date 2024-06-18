@@ -14,6 +14,8 @@ class CustomTextForm extends StatefulWidget {
   final bool isPassword;
   final TextEditingController controller;
   final Validator myValidator;
+  int maxLine = 1;
+  int minLine = 1;
 
   CustomTextForm({
     this.keyboardType = TextInputType.text,
@@ -23,6 +25,8 @@ class CustomTextForm extends StatefulWidget {
     required this.myValidator,
     required this.title,
     required this.hintText,
+    this.maxLine = 1,
+    this.minLine = 1,
     Key? key,
   });
 
@@ -82,6 +86,9 @@ class _CustomTextFormState extends State<CustomTextForm> {
             keyboardType: widget.keyboardType,
             controller: widget.controller,
             validator: widget.myValidator,
+            maxLines: widget.maxLine,
+            minLines: widget.minLine,
+            cursorColor: AppColors.secondaryColor,
           ),
         ],
       ),
