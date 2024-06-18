@@ -5,11 +5,12 @@ class UsersApp {
   final String email;
   final String password;
 
-  UsersApp(
-      {required this.name,
-      required this.email,
-      required this.password,
-      required this.id});
+  UsersApp({
+    required this.name,
+    required this.email,
+    required this.password,
+    required this.id,
+  });
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,

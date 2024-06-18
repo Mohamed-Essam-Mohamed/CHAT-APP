@@ -1,4 +1,4 @@
-import 'package:chat_app/src/feature/add_room/view/add_room_screen.dart';
+import 'package:chat_app/src/feature/add_group/view/add_group_screen.dart';
 import 'package:chat_app/src/provider/save_user_provider.dart';
 import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               backgroundColor: AppColors.secondaryColor,
               onPressed: () {
-                Navigator.pushNamed(context, AddRoomScreen.routeName);
+                Navigator.pushNamed(context, AddGroupScreen.routeName);
               },
               child: Icon(
                 Icons.add,

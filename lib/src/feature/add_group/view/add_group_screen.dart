@@ -1,7 +1,9 @@
 import 'package:chat_app/src/data/model/category_type_group.dart';
-import 'package:chat_app/src/feature/add_room/view_model/add_room_view_model.dart';
+import 'package:chat_app/src/feature/add_group/view_model/add_group_view_model.dart';
+import 'package:chat_app/src/feature/add_group/view_model/group_navigator.dart';
 import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
+import 'package:chat_app/src/utils/dialog_app.dart';
 import 'package:chat_app/src/widget/custom_material_button.dart';
 import 'package:chat_app/src/widget/custom_text_form.dart';
 import 'package:flutter/material.dart';
@@ -10,25 +12,23 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
-class AddRoomScreen extends StatefulWidget {
+class AddGroupScreen extends StatefulWidget {
   static const String routeName = "AddRoomScreen";
-  AddRoomScreen({super.key});
+  AddGroupScreen({super.key});
 
   @override
-  State<AddRoomScreen> createState() => _AddRoomScreenState();
+  State<AddGroupScreen> createState() => _AddGroupScreenState();
 }
 
-class _AddRoomScreenState extends State<AddRoomScreen> {
-  var categoryTypeGroup = CategoryTypeGroup.categoryTypeGroupList();
-  late CategoryTypeGroup selectedItem;
+class _AddGroupScreenState extends State<AddGroupScreen>
+    implements GroupNavigator {
+  AddGroupViewModel viewModel = AddGroupViewModel();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    selectedItem = categoryTypeGroup[0];
+    viewModel.navigator = this;
   }
-
-  AddRoomViewModel viewModel = AddRoomViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -169,19 +169,19 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         isExpanded: true,
         iconSize: 30.h,
         underline: Container(),
-        value: selectedItem,
-        items: categoryTypeGroup.map((catergoryTypeGroup) {
+        value: viewModel.selectedItem,
+        items: viewModel.categoryTypeGroup.map((categoryTypeGroup) {
           return DropdownMenuItem<CategoryTypeGroup>(
-            value: catergoryTypeGroup,
+            value: categoryTypeGroup,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  catergoryTypeGroup.name,
+                  categoryTypeGroup.name,
                   style: AppTextStyle.appTextStyle20,
                 ),
                 Image.asset(
-                  catergoryTypeGroup.image,
+                  categoryTypeGroup.image,
                   height: 40.h,
                   width: 40.w,
                   fit: BoxFit.contain,
@@ -193,10 +193,35 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
         }).toList(),
         onChanged: (value) {
           setState(() {
-            selectedItem = value!;
+            viewModel.selectedItem = value!;
           });
         },
       ),
+    );
+  }
+
+  @override
+  void hideLoading() {
+    Navigator.of(context).pop();
+  }
+
+  @override
+  void showError(String message) {
+    DialogApp.showMessage(context: context, message: message);
+  }
+
+  @override
+  void showLoading() {
+    DialogApp.showLoading(context, "Loading...");
+  }
+
+  @override
+  void navigatorToHome() {
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        Navigator.of(context).pop();
+      },
     );
   }
 }
