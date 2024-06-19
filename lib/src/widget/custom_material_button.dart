@@ -16,7 +16,7 @@ class CustomMaterialButton extends StatelessWidget {
     return MaterialButton(
       onPressed: onPressed,
       elevation: 30,
-      color: AppColors.primaryColro,
+      color: AppColors.primaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.r),
       ),

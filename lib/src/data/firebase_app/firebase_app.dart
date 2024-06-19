@@ -45,8 +45,7 @@ class MyFirebaseApp {
   }
 
   //? get room
-  static Future<GroupApp?> getRoom({required String groupId}) async {
-    final snapshot = await getCollectionRoom().doc(groupId).get();
-    return snapshot.data();
+  static Stream<QuerySnapshot<GroupApp>> getRoom() {
+    return getCollectionRoom().snapshots();
   }
 }

@@ -14,10 +14,10 @@ class CategoryTypeGroup {
   });
   CategoryTypeGroup.id(this.id) {
     if (id == CategoryTypeGroup.sports) {
-      image = "assets/images/sports.png";
+      image = "assets/images/sport.png";
       name = "Sport";
     } else if (id == CategoryTypeGroup.movies) {
-      image = "assets/images/movies.png";
+      image = "assets/images/movie.png";
       name = "Movie";
     } else {
       image = "assets/images/music.png";

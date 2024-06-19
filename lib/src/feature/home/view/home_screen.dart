@@ -1,7 +1,11 @@
+import 'package:chat_app/src/data/firebase_app/firebase_app.dart';
+import 'package:chat_app/src/data/model/group.app.dart';
 import 'package:chat_app/src/feature/add_group/view/add_group_screen.dart';
 import 'package:chat_app/src/provider/save_user_provider.dart';
 import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
+import 'package:chat_app/src/utils/dialog_app.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -44,6 +48,50 @@ class HomeScreen extends StatelessWidget {
                             style: AppTextStyle.appTextStyle30,
                           ),
                         ),
+                        Gap(30.h),
+                        StreamBuilder<QuerySnapshot<GroupApp>>(
+                          stream: MyFirebaseApp.getRoom(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.secondaryColor,
+                                ),
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text(
+                                snapshot.error.toString(),
+                                style: AppTextStyle.appTextStyle30.copyWith(
+                                  color: AppColors.gray.withAlpha(30),
+                                ),
+                              );
+                            } else {
+                              var listGroup = snapshot.data?.docs
+                                  .map((data) => data.data())
+                                  .toList();
+                              return SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.85,
+                                width: double.infinity,
+                                child: GridView.builder(
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10.0.w,
+                                    mainAxisSpacing: 10.0.h,
+                                    childAspectRatio: 0.8,
+                                  ),
+                                  itemBuilder: (context, index) => InkWell(
+                                    onTap: () {},
+                                    child: _boxGroupItem(listGroup, index),
+                                  ),
+                                  itemCount: listGroup?.length,
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -63,6 +111,46 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Container _boxGroupItem(List<GroupApp>? listGroup, int index) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.sp),
+        color: AppColors.white,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withOpacity(0.1),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 10.h,
+          horizontal: 8.w,
+        ),
+        child: Column(
+          children: [
+            Image.asset(
+              "assets/images/${listGroup?[index].groupType}.png",
+              width: 85.w,
+              height: 85.h,
+            ),
+            Gap(10.h),
+            Text(
+              listGroup?[index].groupName ?? "",
+              style: AppTextStyle.appTextStyle20,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }
