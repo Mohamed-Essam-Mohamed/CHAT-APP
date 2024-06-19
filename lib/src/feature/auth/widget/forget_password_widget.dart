@@ -22,7 +22,7 @@ class ForgetPasswordWidget extends StatelessWidget {
         child: Text(
           "Forget Password?",
           style: AppTextStyle.appTextStyle15.copyWith(
-            color: AppColors.primaryColro,
+            color: AppColors.primaryColor,
           ),
         ),
       ),
