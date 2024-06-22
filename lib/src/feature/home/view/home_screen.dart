@@ -13,10 +13,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = "HomeScreen";
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var changeTabBar = 0;
   @override
   Widget build(BuildContext context) {
     var provideder = Provider.of<SaveUserProvider>(context);
@@ -33,72 +39,115 @@ class HomeScreen extends StatelessWidget {
           Scaffold(
             backgroundColor: Colors.transparent,
             body: SafeArea(
-              child: Form(
-                // key: ,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Chat App",
-                            style: AppTextStyle.appTextStyle30,
-                          ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Chat App",
+                          style: AppTextStyle.appTextStyle30,
                         ),
-                        Gap(30.h),
-                        StreamBuilder<QuerySnapshot<GroupApp>>(
-                          stream: MyFirebaseApp.getRoom(),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                child: CircularProgressIndicator(
-                                  color: AppColors.secondaryColor,
+                      ),
+                      Gap(15.h),
+                      DefaultTabController(
+                        length: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TabBar(
+                              onTap: (value) {
+                                changeTabBar = value;
+                                setState(() {});
+                              },
+                              isScrollable: true,
+                              labelColor: const Color(0xFF00BAAB),
+                              unselectedLabelColor: Colors.transparent,
+                              labelStyle: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              unselectedLabelStyle: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              dividerColor: Colors.transparent,
+                              physics: const BouncingScrollPhysics(),
+                              indicatorPadding:
+                                  const EdgeInsets.only(right: 10),
+                              indicatorColor: const Color(0xFF00BAAB),
+                              tabs: [
+                                Text(
+                                  "My Groups",
+                                  style: AppTextStyle.appTextStyle20
+                                      .copyWith(color: AppColors.white),
                                 ),
-                              );
-                            } else if (snapshot.hasError) {
-                              return Text(
-                                snapshot.error.toString(),
-                                style: AppTextStyle.appTextStyle30.copyWith(
-                                  color: AppColors.gray.withAlpha(30),
+                                Text(
+                                  "Browse",
+                                  style: AppTextStyle.appTextStyle20
+                                      .copyWith(color: AppColors.white),
                                 ),
-                              );
-                            } else {
-                              var listGroup = snapshot.data?.docs
-                                  .map((data) => data.data())
-                                  .toList();
-                              return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.85,
-                                width: double.infinity,
-                                child: GridView.builder(
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 10.0.w,
-                                    mainAxisSpacing: 10.0.h,
-                                    childAspectRatio: 0.8,
-                                  ),
-                                  itemBuilder: (context, index) => InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).pushNamed(
-                                          ChatScreen.routeName,
-                                          arguments: listGroup?[index]);
-                                    },
-                                    child: _boxGroupItem(listGroup, index),
-                                  ),
-                                  itemCount: listGroup?.length,
-                                ),
-                              );
-                            }
-                          },
+                              ],
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Gap(30.h),
+                      StreamBuilder<QuerySnapshot<GroupApp>>(
+                        stream: changeTabBar == 0
+                            ? MyFirebaseApp.getSpecificGroup(
+                                provideder.user?.id ?? "")
+                            : MyFirebaseApp.getAllGroup(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.secondaryColor,
+                              ),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Text(
+                              snapshot.error.toString(),
+                              style: AppTextStyle.appTextStyle30.copyWith(
+                                color: AppColors.gray.withAlpha(30),
+                              ),
+                            );
+                          } else {
+                            var listGroup = snapshot.data?.docs
+                                .map((data) => data.data())
+                                .toList();
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.85,
+                              width: double.infinity,
+                              child: GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10.0.w,
+                                  mainAxisSpacing: 10.0.h,
+                                  childAspectRatio: 0.8,
+                                ),
+                                itemBuilder: (context, index) => InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                        ChatScreen.routeName,
+                                        arguments: listGroup?[index]);
+                                  },
+                                  child: _boxGroupItem(listGroup, index),
+                                ),
+                                itemCount: listGroup?.length,
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),

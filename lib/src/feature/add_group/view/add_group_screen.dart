@@ -1,6 +1,7 @@
 import 'package:chat_app/src/data/model/category_type_group.dart';
 import 'package:chat_app/src/feature/add_group/view_model/add_group_view_model.dart';
 import 'package:chat_app/src/feature/add_group/view_model/group_navigator.dart';
+import 'package:chat_app/src/provider/save_user_provider.dart';
 import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
 import 'package:chat_app/src/utils/dialog_app.dart';
@@ -32,6 +33,7 @@ class _AddGroupScreenState extends State<AddGroupScreen>
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SaveUserProvider>(context);
     var _siz = MediaQuery.of(context).size;
     return ChangeNotifierProvider(
       create: (context) => viewModel,
@@ -133,7 +135,7 @@ class _AddGroupScreenState extends State<AddGroupScreen>
                                 Gap(15.h),
                                 CustomMaterialButton(
                                   onPressed: () {
-                                    viewModel.addRoom();
+                                    viewModel.addRoom(user: provider.user!);
                                   },
                                   title: "Create Group",
                                 )

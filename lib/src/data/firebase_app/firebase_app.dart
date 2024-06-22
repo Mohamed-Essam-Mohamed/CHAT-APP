@@ -39,15 +39,22 @@ class MyFirebaseApp {
   }
 
   //? add room
-  static Future<void> addRoom({required GroupApp group}) async {
+  static Future<void> addGroup({required GroupApp group}) async {
     var refId = getCollectionRoom().doc();
     group.roomId = refId.id;
     return refId.set(group);
   }
 
   //? get room
-  static Stream<QuerySnapshot<GroupApp>> getRoom() {
+  static Stream<QuerySnapshot<GroupApp>> getAllGroup() {
     return getCollectionRoom().snapshots();
+  }
+
+  //? spacific room
+  static Stream<QuerySnapshot<GroupApp>> getSpecificGroup(String ownerId) {
+    return getCollectionRoom()
+        .where("owner_id", isEqualTo: ownerId)
+        .snapshots();
   }
 
   //? collection message
