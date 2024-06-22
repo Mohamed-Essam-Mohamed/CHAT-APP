@@ -2,6 +2,7 @@ import 'package:chat_app/src/data/firebase_app/firebase_app.dart';
 import 'package:chat_app/src/data/model/group.app.dart';
 import 'package:chat_app/src/feature/add_group/view/add_group_screen.dart';
 import 'package:chat_app/src/feature/chat/view/chat_screen.dart';
+import 'package:chat_app/src/feature/join_group/view/join_screen.dart';
 import 'package:chat_app/src/provider/save_user_provider.dart';
 import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
@@ -136,8 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 itemBuilder: (context, index) => InkWell(
                                   onTap: () {
                                     Navigator.of(context).pushNamed(
-                                        ChatScreen.routeName,
-                                        arguments: listGroup?[index]);
+                                      JoinScreen.routeName,
+                                      arguments: listGroup?[index],
+                                    );
                                   },
                                   child: _boxGroupItem(listGroup, index),
                                 ),
