@@ -1,4 +1,5 @@
 import 'package:chat_app/src/data/model/group.app.dart';
+import 'package:chat_app/src/data/model/message.dart';
 import 'package:chat_app/src/data/model/user_app.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -47,5 +48,30 @@ class MyFirebaseApp {
   //? get room
   static Stream<QuerySnapshot<GroupApp>> getRoom() {
     return getCollectionRoom().snapshots();
+  }
+
+  //? collection message
+  static CollectionReference<Message> collectionMessage(String groupId) {
+    return FirebaseFirestore.instance
+        .collection(GroupApp.groupApp)
+        .doc(groupId)
+        .collection(Message.collectionName)
+        .withConverter(
+          fromFirestore: (snapshot, options) =>
+              Message.fromJson(snapshot.data()!),
+          toFirestore: (snapshot, options) => snapshot.toJson(),
+        );
+  }
+
+  //? insert message
+  static Future<void> insertMessage(Message message) async {
+    var refId = collectionMessage(message.roomId);
+    message.id = refId.doc().id;
+    return refId.doc(message.id).set(message);
+  }
+
+  //? get all chat data
+  static Stream<QuerySnapshot<Message>> getAllMessage(String groupId) {
+    return collectionMessage(groupId).orderBy('date_time').snapshots();
   }
 }
