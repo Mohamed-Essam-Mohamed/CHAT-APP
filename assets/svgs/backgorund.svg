@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="375" height="812" viewBox="0 0 375 812">
+  <defs>
+    <clipPath id="clip-backgorund">
+      <rect width="375" height="812"/>
+    </clipPath>
+  </defs>
+  <g id="backgorund" clip-path="url(#clip-backgorund)">
+    <rect width="375" height="812" fill="rgba(255,255,255,0)"/>
+    <g id="Group_9672" transform="translate(0 -198)">
+      <g id="Group_9672-2" data-name="Group_9672" transform="translate(-46.099 -22.604)">
+        <g id="Group_2" data-name="Group 2" transform="translate(0 198)">
+          <path id="Path_4" data-name="Path 4" d="M855.149,344.791l493.29-182.637L959.269-64.862Z" transform="translate(1408.298 344.895) rotate(-175)" fill="#82d5ff"/>
+          <path id="Path_3" data-name="Path 3" d="M855.149,399.52l523.477-207.037L965.641-64.862Z" transform="translate(746.522 950.026) rotate(-136)" fill="#e683fc"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

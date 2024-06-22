@@ -29,7 +29,7 @@ class HaveAccountWidget extends StatelessWidget {
           child: Text(
             subTitle,
             style: AppTextStyle.appTextStyle16.copyWith(
-              color: AppColors.blue,
+              color: AppColors.primaryColor,
             ),
           ),
         ),
