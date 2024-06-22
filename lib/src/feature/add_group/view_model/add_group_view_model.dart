@@ -1,7 +1,9 @@
 import 'package:chat_app/src/data/firebase_app/firebase_app.dart';
 import 'package:chat_app/src/data/model/category_type_group.dart';
 import 'package:chat_app/src/data/model/group.app.dart';
+import 'package:chat_app/src/data/model/user_app.dart';
 import 'package:chat_app/src/feature/add_group/view_model/group_navigator.dart';
+import 'package:chat_app/src/provider/save_user_provider.dart';
 
 import 'package:flutter/material.dart';
 
@@ -14,9 +16,11 @@ class AddGroupViewModel extends ChangeNotifier {
   late GroupNavigator navigator;
   var formKey = GlobalKey<FormState>();
 
-  void addRoom() {
+  void addRoom({required UsersApp user}) {
     if (formKey.currentState!.validate()) {
       var group = GroupApp(
+        ownerId: user.id,
+        countMember: "1",
         roomId: "",
         groupName: groupNameController.text,
         groupDescription: groupDescriptionController.text,
@@ -24,7 +28,7 @@ class AddGroupViewModel extends ChangeNotifier {
       );
       navigator.showLoading();
       try {
-        MyFirebaseApp.addRoom(group: group);
+        MyFirebaseApp.addGroup(group: group);
         navigator.hideLoading();
         navigator.navigatorToHome();
       } catch (e) {
