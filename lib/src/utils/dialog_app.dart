@@ -39,7 +39,7 @@ class DialogApp {
       builder: ((context) {
         return AlertDialog(
           title: Text(
-            message,
+            "warning".toUpperCase(),
             style: AppTextStyle.appTextStyle16.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -50,6 +50,19 @@ class DialogApp {
               color: AppColors.primaryColor,
             ),
           ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                "OK",
+                style: AppTextStyle.appTextStyle15.copyWith(
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ),
+          ],
         );
       }),
     );

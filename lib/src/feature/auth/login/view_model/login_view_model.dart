@@ -29,10 +29,10 @@ class LoginViewModel extends ChangeNotifier {
         navigator.hideLoading();
         navigator.navigatorToHome(userObject!);
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
+        if (e.code == 'user-not-found' || e.code == 'USER-NOT-FOUND') {
           navigator.hideLoading();
           navigator.showError('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
+        } else if (e.code == 'WRONG-PASSWORD' || e.code == 'wrong-password') {
           navigator.hideLoading();
 
           navigator.showError('Wrong password provided for that user.');

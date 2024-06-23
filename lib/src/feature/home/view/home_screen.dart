@@ -23,10 +23,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var changeTabBar = 0;
+  int changeTabBar = 0;
   @override
   Widget build(BuildContext context) {
-    var provideder = Provider.of<SaveUserProvider>(context);
+    var provider = Provider.of<SaveUserProvider>(context);
     return Container(
       color: AppColors.white,
       child: Stack(
@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      Gap(5.h),
                       Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -100,52 +101,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Gap(30.h),
                       StreamBuilder<QuerySnapshot<GroupApp>>(
-                        stream: changeTabBar == 0
-                            ? MyFirebaseApp.getSpecificGroup(
-                                provideder.user?.id ?? "")
-                            : MyFirebaseApp.getAllGroup(),
+                        stream: changeTabBar != 0
+                            ? MyFirebaseApp.getAllGroup()
+                            : MyFirebaseApp.getSpecificGroup(
+                                provider.user?.id ?? ""),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: AppColors.secondaryColor,
-                              ),
-                            );
+                            return _circularProgressIndicatorWidget();
                           } else if (snapshot.hasError) {
-                            return Text(
-                              snapshot.error.toString(),
-                              style: AppTextStyle.appTextStyle30.copyWith(
-                                color: AppColors.gray.withAlpha(30),
-                              ),
-                            );
+                            return _textErrorWidget(snapshot);
                           } else {
                             var listGroup = snapshot.data?.docs
                                 .map((data) => data.data())
                                 .toList();
-                            return SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.85,
-                              width: double.infinity,
-                              child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10.0.w,
-                                  mainAxisSpacing: 10.0.h,
-                                  childAspectRatio: 0.8,
-                                ),
-                                itemBuilder: (context, index) => InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(
-                                      JoinScreen.routeName,
-                                      arguments: listGroup?[index],
-                                    );
-                                  },
-                                  child: _boxGroupItem(listGroup, index),
-                                ),
-                                itemCount: listGroup?.length,
-                              ),
-                            );
+                            return _gridViewGroupsWidget(context, listGroup);
                           }
                         },
                       ),
@@ -167,6 +137,49 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Center _circularProgressIndicatorWidget() {
+    return const Center(
+      child: CircularProgressIndicator(
+        color: AppColors.secondaryColor,
+      ),
+    );
+  }
+
+  SizedBox _gridViewGroupsWidget(
+      BuildContext context, List<GroupApp>? listGroup) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.85,
+      width: double.infinity,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10.0.w,
+          mainAxisSpacing: 10.0.h,
+          childAspectRatio: 0.8,
+        ),
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              JoinScreen.routeName,
+              arguments: listGroup?[index],
+            );
+          },
+          child: _boxGroupItem(listGroup, index),
+        ),
+        itemCount: listGroup?.length,
+      ),
+    );
+  }
+
+  Text _textErrorWidget(AsyncSnapshot<QuerySnapshot<GroupApp>> snapshot) {
+    return Text(
+      snapshot.error.toString(),
+      style: AppTextStyle.appTextStyle30.copyWith(
+        color: AppColors.gray.withAlpha(30),
       ),
     );
   }
