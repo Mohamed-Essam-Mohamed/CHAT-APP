@@ -1,6 +1,5 @@
 # CHAT APP
 
-
 ## 🚀 Getting Started
 
 - The application is fully API-dependent.
