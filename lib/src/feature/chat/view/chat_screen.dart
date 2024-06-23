@@ -4,6 +4,7 @@ import 'package:chat_app/src/data/model/message.dart';
 import 'package:chat_app/src/feature/chat/view/widget/message_widget.dart';
 import 'package:chat_app/src/feature/chat/view_model/chat_navigator.dart';
 import 'package:chat_app/src/feature/chat/view_model/chat_view_model.dart';
+import 'package:chat_app/src/feature/home/view/home_screen.dart';
 import 'package:chat_app/src/provider/save_user_provider.dart';
 import 'package:chat_app/src/utils/app_colors.dart';
 import 'package:chat_app/src/utils/app_text_style.dart';
@@ -69,9 +70,18 @@ class _ChatScreenState extends State<ChatScreen> implements ChatNavigator {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.of(context)
+                                .pushReplacementNamed(HomeScreen.routeName);
                           },
                           icon: const Icon(Icons.arrow_back),
+                        ),
+                        const Spacer(),
+                        Text(
+                          viewModel.group.groupName.toUpperCase(),
+                          style: AppTextStyle.appTextStyle30.copyWith(
+                            fontSize: 16.sp,
+                            color: AppColors.white,
+                          ),
                         ),
                         const Spacer(),
                         PopupMenuButton(
