@@ -1,5 +1,5 @@
 # CHAT APP
-##using Firebase(Auth - cloud firestore), MVVM design pattern, and Provider for state management.
+## using Firebase(Auth - cloud firestore), MVVM design pattern, and Provider for state management.
 
 ## 🚀 Getting Started
 
