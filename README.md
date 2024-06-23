@@ -4,7 +4,7 @@
 ## 🚀 Getting Started
 
 - The user can sign in using Email and password.
-- He can create a room of three different types (Music, Movies or sports)
+- He can create a room of three different types (Music, Movies, or sports).
 - Two tabs, one showing all the rooms in the database and a tab showing the rooms that the user enters.
 - The user can enter and the number of members of the joined room gets incremented, he can also leave, and the number decreases.
 - The app listens continuously for the internet, if the user's internet is disconnected a little disconnected WIFI Icon is shown instead of the send icon.
@@ -13,12 +13,11 @@
   
 ## 🤳 Screens
 
-- **Splash Screen:** Adding a splash screen to your Android app. 
-- **Home Screen:** You start with categories and then you can navigate to the news based on choosing the desired category on the same scaffold.
-- **Drawer Screen:** It is possible to move to the category when we are in the news and vice versa is true.
-- **Details Screen:** When the user clicks on an article, will go to this screen to show the details of this article and when the user clicks on view article, it will view its link in the user’s default browser.
-- **Search Screen:** It same as the previous screen but in appear there is a search bar where the user can write the name of the article to search on it in API, and  shown when the user clicks on the search icon in the previous screen.
-
+- **Splash Screen:** Adding a splash screen to your Android app.
+- **Splash Screen Animation:**  simple animation used by timer.
+- **Home Screen:**It contains my groups and Browse, my groups It includes the meals that were created by me, browse Contains all the application options .
+- **Add Group Screen:** He can create a room of three different types (Music, Movies, or sports).
+- **Chat Screen:** talking and dating between members with ease and listening to opinions and comments about the content of the group.
 
 
 
