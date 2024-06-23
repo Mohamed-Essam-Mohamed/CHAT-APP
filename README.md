@@ -1,16 +1,15 @@
 # CHAT APP
+##using Firebase(Auth - cloud firestore), MVVM design pattern, and Provider for state management.
 
 ## 🚀 Getting Started
 
-- The application is fully API-dependent.
-- pagination shows the pages.
-- used searchDelegate to search.
--  As we know, to get news from the internet we should connect to an API so let’s see the News API that we will use in this app.
--  News API is a simple JSON-based REST API for searching and retrieving news articles and articles from specific sources from all over the internet. Using this, one can fetch the most important news articles that work on a news site or search for the most important news on a specific topic (or keyword).
--   News can be retrieved based on some criteria. Say the topic (keyword) to be searched is 'route' or may be related to a particular channel
--   used package   webview_flutter: ^4.7.0 To get the source of the news and display it in the application.
--   News app built using news API, the user can display news agencies according the categories, he can search for a piece of article
-using different end point and he can view the website of the article, the app also utilizes pagination for lazily loading date.
+- The user can sign in using Email and password.
+- He can create a room of three different types (Music, Movies or sports)
+- Two tabs, one showing all the rooms in the database and a tab showing the rooms that the user enters.
+- The user can enter and the number of members of the joined room gets incremented, he can also leave, and the number decreases.
+- The app listens continuously for the internet, if the user's internet is disconnected a little disconnected WIFI Icon is shown instead of the send icon.
+- DateTime.now() isn't good for syncing messages between different devices with different date time, so I used "FieldValue.servertimestamp()" to sync messages using a server-generated Time
+
   
 ## 🤳 Screens
 
