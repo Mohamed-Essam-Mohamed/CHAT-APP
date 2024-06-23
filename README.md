@@ -41,10 +41,27 @@ using different end point and he can view the website of the article, the app al
 ## 🛠 Dependencies
 
 ```pubspec.yaml
-  http: ^1.2.1
-  shimmer: ^3.0.0
-  cached_network_image: ^3.3.1
-  webview_flutter: ^4.7.0
+ dependencies:
+  cloud_firestore: ^5.0.0
+  cupertino_icons: ^1.0.6
+  firebase_auth: ^5.0.0
+  firebase_core: ^3.0.0
+  flutter:
+    sdk: flutter
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.10+1
+  gap: ^3.0.1
+  google_fonts: ^6.2.1
+  grouped_list: ^5.1.2
+  intl: ^0.19.0
+  lottie: ^3.1.2
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
 ```
 
 
