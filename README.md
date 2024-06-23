@@ -26,7 +26,8 @@ using different end point and he can view the website of the article, the app al
 
 
 ## 📁 Files Structure
-![files-structure](https://github.com/Mohamed-Essam-Mohamed/news_app/assets/152906492/1cafaddc-99e5-4553-a0ea-8395bf40dad9)
+![files Structure chat app](https://github.com/Mohamed-Essam-Mohamed/CHAT-APP/assets/152906492/67434545-1e1a-4de4-9e57-f9795d895e4e)
+
 
 
 ## 📱 UI
@@ -34,7 +35,7 @@ using different end point and he can view the website of the article, the app al
 
 
 ## 🎥 Video
-https://github.com/Mohamed-Essam-Mohamed/news_app/assets/152906492/41055297-8442-4ee2-9ba4-fd184fee4a1a
+
 
 
 ## 🛠 Dependencies
