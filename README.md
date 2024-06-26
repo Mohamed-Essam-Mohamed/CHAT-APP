@@ -16,7 +16,7 @@
 - **Splash Screen:** Adding a splash screen to your Android app.
 - **Splash Screen Animation:**  simple animation used by timer.
 - **Authentication Screen:** The user can sign in using Email and password, and create an account.
-- **Home Screen:**It contains my groups and Browse, my groups It includes the meals that were created by me, browse Contains all the application options .
+- **Home Screen:**It contains my groups and Browse, my groups It includes the meals that were created by me, browse Contains all the application options.
 - **Join Screen:**It contains the details of the group such as the name, owner, description, and type of Group.
 - **Add Group Screen:** He can create a room of three different types (Music, Movies, or sports).
 - **Chat Screen:** talking and dating between members with ease and listening to opinions and comments about the content of the group.
