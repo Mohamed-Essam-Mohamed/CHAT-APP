@@ -5,10 +5,10 @@
 
 - The user can sign in using Email and password.
 - He can create a room of three different types (Music, Movies, or sports).
-- Two tabs, one showing all the rooms in the database and a tab showing the rooms that the user enters.
+- Two tabs, one showing all the rooms in the database and a tab showing the rooms the user enters.
 - The user can enter and the number of members of the joined room gets incremented, he can also leave, and the number decreases.
 - The app listens continuously for the internet, if the user's internet is disconnected a little disconnected WIFI Icon is shown instead of the send icon.
-- DateTime.now() isn't good for syncing messages between different devices with different date time, so I used "FieldValue.servertimestamp()" to sync messages using a server-generated Time
+- DateTime.now() isn't good for syncing messages between different devices with different date times, so I used "FieldValue.servertimestamp()" to sync messages using a server-generated Time
 
   
 ## 🤳 Screens
